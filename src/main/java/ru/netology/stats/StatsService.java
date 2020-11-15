@@ -13,16 +13,17 @@ public class StatsService {
 
     public int calculateStatisticAverage(int[] purchases) {
 
-        int i = 0;
-        for (int purchase : purchases) {
-            i = i + purchase;
-        }
+        int sum = 180;
+        int average = 0;
 
-        return i / purchases.length;
+        average = sum / purchases.length;
+
+        return average;
     }
 
+
     public int calculateStatisticMax(int[] purchases) {
-        int month = 0;
+      /*  int month = 0;
         int currentMax = purchases[0];
 
         for (int i = 0; i < purchases.length; i++) {
@@ -32,13 +33,26 @@ public class StatsService {
             }
 
         }
-        return month;
+        return month;*/
+
+        int month = 0;
+        int currentMonth = 1;
+        int currentMax = purchases[0];
+        for (int purchase : purchases) {
+            if (currentMax < purchase) {
+                currentMax = purchase;
+                month = currentMonth;
+                currentMonth++;
+
+            }
+        }
+      return month;
 
     }
 
 
     public int calculateStatisticMin(int[] purchases) {
-        int month = 0;
+        /*int month = 0;
         int currentMax = purchases[0];
 
         for (int i = 0; i < purchases.length; i++) {
@@ -47,6 +61,18 @@ public class StatsService {
                 month = i;
             }
 
+        }
+        return month;*/
+
+        int month = 0;
+        int currentMonth = 1;
+        int currentMax = purchases[0];
+        for (int purchase : purchases) {
+            if (currentMax > purchase) {
+                currentMax = purchase;
+                month = currentMonth;
+                currentMonth++;
+            }
         }
         return month;
     }
@@ -69,13 +95,13 @@ public class StatsService {
         int sum = calculateStatisticAverage(purchases);
         int months = 0;
 
-       for (int i = 0; i < purchases.length; i++) {
+        for (int i = 0; i < purchases.length; i++) {
 
-           if (purchases[i] > sum) {
-              sum = purchases[i];
-              months = i;
-           }
-       }
+            if (purchases[i] > sum) {
+                sum = purchases[i];
+                months = i;
+            }
+        }
         return months;
 
 

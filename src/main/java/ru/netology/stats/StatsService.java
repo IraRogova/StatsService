@@ -13,7 +13,7 @@ public class StatsService {
 
     public int calculateStatisticAverage(int[] purchases) {
 
-        int sum = 180;
+        int sum = calculateStatisticSum(purchases);
         int average = 0;
 
         average = sum / purchases.length;
@@ -23,28 +23,17 @@ public class StatsService {
 
 
     public int calculateStatisticMax(int[] purchases) {
-      /*  int month = 0;
-        int currentMax = purchases[0];
-
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] > currentMax) {
-                currentMax = purchases[i];
-                month = i;
-            }
-
-        }
-        return month;*/
 
         int month = 0;
         int currentMonth = 1;
         int currentMax = purchases[0];
         for (int purchase : purchases) {
-            if (currentMax < purchase) {
+            if (purchase >= currentMax) {
                 currentMax = purchase;
                 month = currentMonth;
-                currentMonth++;
 
             }
+            currentMonth++;
         }
       return month;
 
@@ -52,27 +41,17 @@ public class StatsService {
 
 
     public int calculateStatisticMin(int[] purchases) {
-        /*int month = 0;
-        int currentMax = purchases[0];
-
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] < currentMax) {
-                currentMax = purchases[i];
-                month = i;
-            }
-
-        }
-        return month;*/
 
         int month = 0;
         int currentMonth = 1;
-        int currentMax = purchases[0];
+        int currentMin = purchases[0];
         for (int purchase : purchases) {
-            if (currentMax > purchase) {
-                currentMax = purchase;
+            if (purchase <= currentMin) {
+                currentMin = purchase;
                 month = currentMonth;
-                currentMonth++;
+
             }
+            currentMonth++;
         }
         return month;
     }
@@ -80,12 +59,10 @@ public class StatsService {
 
     public int calculateStatisticMinAverage(int[] purchases) {
         int sum = calculateStatisticAverage(purchases);
-
         int months = 0;
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] > sum) {
-                sum = purchases[i];
-                months = i;
+        for (int purchase : purchases) {
+            if (purchase < sum) {
+                months++;
             }
         }
         return months;
@@ -94,12 +71,9 @@ public class StatsService {
     public int calculateStatisticMaxAverage(int[] purchases) {
         int sum = calculateStatisticAverage(purchases);
         int months = 0;
-
-        for (int i = 0; i < purchases.length; i++) {
-
-            if (purchases[i] > sum) {
-                sum = purchases[i];
-                months = i;
+        for (int purchase : purchases) {
+            if (purchase > sum) {
+                months++;
             }
         }
         return months;

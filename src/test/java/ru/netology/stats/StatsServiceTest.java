@@ -30,7 +30,7 @@ class StatsServiceTest {
     void calculateStatisticMax() {
         StatsService service = new StatsService();
         int [] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 7;
+        int expected = 8;
         int actual = service.calculateStatisticMax(purchases);
         assertEquals(expected, actual);
     }
@@ -39,7 +39,7 @@ class StatsServiceTest {
     void calculateStatisticMin() {
         StatsService service = new StatsService();
         int [] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 10;
+        int expected = 9;
         int actual = service.calculateStatisticMin(purchases);
         assertEquals(expected, actual);
     }
